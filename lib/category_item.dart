@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:food_app/category_meals_screen.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key, required this.title, required this.color});
+  const CategoryItem(
+      {super.key, required this.title, required this.color, required this.id});
 
+  final String id;
   final String title;
   final Color color;
 
   // funtion for the on tap event
-  void selectCategory(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return const CategoryMealsScreen();
-        },
-      ),
-    );
+  void selectCategory(BuildContext ctx) {
+    Navigator.of(ctx)
+        .pushNamed('/categories-meals', arguments: {'id': id, 'title': title});
   }
 
 // the build widget will retrun a container with the category items

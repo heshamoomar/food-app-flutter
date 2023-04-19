@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/categories_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,17 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Material App
     return MaterialApp(
-
-        // Scaffold Widget
-        home: Scaffold(
-      appBar: AppBar(
-        // AppBar takes a Text Widget
-        // in it's title parameter
-        title: const Text('DeliMeals'),
-      ),
-      body: const Center(child: Text('Navigation Time')),
-    ));
+      title: 'DeliMeals',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const CategoriesScreen(), // loading this as our main screen
+    );
   }
 }

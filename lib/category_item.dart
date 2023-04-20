@@ -12,7 +12,7 @@ class CategoryItem extends StatelessWidget {
   // funtion for the on tap event
   void selectCategory(BuildContext ctx) {
     Navigator.of(ctx)
-        .pushNamed('/categories-meals', arguments: {'id': id, 'title': title});
+        .pushNamed(CategoryMealsScreen.routeName, arguments: {'id': id, 'title': title});
   }
 
 // the build widget will retrun a container with the category items

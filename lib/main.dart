@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './screens/meal_detail_screen.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
 
@@ -42,6 +43,20 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => const CategoriesScreen(), //home route
         CategoryMealsScreen.routeName: (ctx) => const CategoryMealsScreen(),
+        MealDetailScreen.routeName: (ctx) => const MealDetailScreen(),
+      },
+      // onGenerateRoute loads specified route for every route not registered in the routes screen as long as we tried to load the named route
+      onGenerateRoute: (setteing) {
+        print(setteing.arguments);
+        //return MaterialPageRoute(builder: (ctx) => const CategoriesScreen(),);
+      },
+      // onUnknownRoute this route is reched when flutter fials to load any route on the screen
+      // (last resort) could be an error page for example
+      // for this app we load CategoriesScreen as our fallback page
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (ctx) => const CategoriesScreen(),
+        );
       },
     );
   }

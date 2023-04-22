@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.deepPurpleAccent,
           ),
           colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: Colors.amberAccent, // Accent color
+            secondary: Colors.amber, // Accent color
           ),
           canvasColor: const Color.fromRGBO(255, 254, 229, 1),
           fontFamily: 'Raleway',

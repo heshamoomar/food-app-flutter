@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/screens/filters_screen.dart';
 import 'package:food_app/screens/tabs_screen.dart';
 
 import './screens/meal_detail_screen.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
+import './screens/filters_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           //primaryColor: Colors.pink,
           appBarTheme: const AppBarTheme(
-            iconTheme: IconThemeData(color: Colors.black),
+            iconTheme: IconThemeData(color: Colors.white),
             backgroundColor: Colors.deepPurpleAccent,
           ),
           colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => const TabsScreen(), //home route
         CategoryMealsScreen.routeName: (ctx) => const CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => const MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => const FiltersScreen(),
       },
       // onGenerateRoute loads specified route for every route not registered in the routes screen as long as we tried to load the named route
       onGenerateRoute: (setteing) {

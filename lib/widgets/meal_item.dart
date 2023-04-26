@@ -12,6 +12,7 @@ class MealItem extends StatelessWidget {
     required this.duration,
     required this.complexity,
     required this.affordability,
+    required this.removeItem,
   });
 
   final String id;
@@ -20,6 +21,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function removeItem;
 
   // creating a getter for the complexity enumeration
   String get complexityText {
@@ -50,8 +52,20 @@ class MealItem extends StatelessWidget {
   }
 
   // funtion for handling the selection of the meal by route name
+  // the method pushNamed returns a Future<T>
+  // Futures are objects that allow you to specify a function that should execute once they're done with a certain operation for example in this case displaying the page we're going to (MealDetailScreen), it is pushed once pushNamed is done
+  // we can also add a (then) in this case we pass result of the pop method from the meal_details screen and the (then) argument will execute the result once pushNamed is finished aka in this case, once we see the page
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetailScreen.routeName, arguments: id);
+    Navigator.of(context)
+        .pushNamed(
+      MealDetailScreen.routeName,
+      arguments: id,
+    )
+        .then((result) {
+      if (result != null) {
+        removeItem(result);
+      }
+    });
   }
 
   @override

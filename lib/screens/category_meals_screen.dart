@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../dummy_data.dart';
 import '../widgets/meal_item.dart';
 import '../models/meal.dart';
 
 class CategoryMealsScreen extends StatefulWidget {
-  const CategoryMealsScreen({super.key});
+  const CategoryMealsScreen( {super.key, required this.availableMeals});
+
+  final List<Meal> availableMeals;
 
   // storting the route name for the CategoryMealsScreen class in a static const property
   // static const properties are properties which can be accessed without instantiation of the class itself,
@@ -35,7 +36,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
     categoryTitle = routeArgs['title']!;
     final categoryId = routeArgs['id'];
 
-    displayedMeals = DUMMY_MEALS.where((meal) {
+    displayedMeals = widget.availableMeals.where((meal) {
       return meal.categories.contains(categoryId);
     }).toList();
     //_loadedInitData = true;

@@ -29,7 +29,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
   @override
   void didChangeDependencies() {
-    //if (!_loadedInitData) {//TODO: add didChangeDependencies body here}
+    //if (!_loadedInitData) {//add didChangeDependencies body here}
     final routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
     categoryTitle = routeArgs['title']!;
@@ -52,7 +52,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(categoryTitle!),
+        title: Text(categoryTitle),
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {

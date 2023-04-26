@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -42,6 +43,24 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(String mealId) {
+    final existingIndex =
+        _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  bool _isMealFavorite(String id) {
+    return _favoriteMeals.any((meal) => meal.id == id);
   }
 
   @override
@@ -74,12 +93,12 @@ class _MyAppState extends State<MyApp> {
       //home: const CategoriesScreen(), // loading this as our main screen
       // named routes
       routes: {
-        '/': (ctx) => const TabsScreen(), //home route
+        '/': (ctx) => TabsScreen(favoriteMeals: _favoriteMeals), //home route
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(availableMeals: _availableMeals),
-        MealDetailScreen.routeName: (ctx) => const MealDetailScreen(),
-        FiltersScreen.routeName: (ctx) =>
-            FiltersScreen(_setFilters, saveFilters: _setFilters,currentFilter: _filters),
+        MealDetailScreen.routeName: (ctx) =>MealDetailScreen(toggleFavorite: _toggleFavorite, isFavorite: _isMealFavorite,  ),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters,
+            saveFilters: _setFilters, currentFilter: _filters),
       },
       // onGenerateRoute loads specified route for every route not registered in the routes screen as long as we tried to load the named route
       onGenerateRoute: (setteing) {
